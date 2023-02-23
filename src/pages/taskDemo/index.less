@@ -1,0 +1,107 @@
+.iconYidong {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    border: 1px solid black;
+    background-color: rgba(223, 215, 215, 0.26);
+  
+    .iconYii {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      font-size: 20px;
+      font-weight: 800;
+    }
+  }
+  
+  .propBox {
+    :global {
+      .ant-popover-inner-content {
+        padding: 0px;
+      }
+    }
+  }
+  
+  .treeBox {
+    border: 1px solid black;
+    width: 100%;
+    height: 700px;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: space-around;
+  
+    .leftBox {
+      width: 38%;
+      height: 100%;
+      background-color: #fff;
+      border-right: 2px solid grey;
+      padding: 24px;
+  
+      :global {
+        .ant-tree {
+          width: 100%;
+          background-color: #fff;
+        }
+      }
+    }
+  
+    :global {
+      .ant-tree-list-holder-inner {
+        width: 100% !important;
+      }
+  
+      .ant-tree-iconEle {
+        float: left !important;
+        margin-top: 3px;
+      }
+    }
+  
+  }
+  
+  .iconKaifaBox {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+  
+    .addIcon {
+      margin-top: 4px;
+      font-size: 16px;
+    }
+  }
+  
+  
+  .iconYidong:hover {
+    cursor: move;
+  }
+  
+  .dragMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    cursor: move;
+  }
+  
+  .exitButtonBox {
+      display: block;
+    background-color: #fff;
+    padding: 12px 0px;
+  .buttonIcon{
+      padding:0px 20px;
+  }
+    .buttonIcon:hover {
+      display: block;
+      cursor: pointer;
+      background-color: rgb(230, 227, 227);
+    }
+  }
+  .fwbBoox{
+  float: left;
+  margin-top: 2px;
+    font{
+      background-color: rgba(250,173,20,1);
+    }
+  
+  }
