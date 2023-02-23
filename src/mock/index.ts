@@ -3,10 +3,14 @@ import Mock from 'mockjs';
 const dataList = Mock.mock({
   code: '0',
   msg: 'success',
-  'list|5': [
+  'list|50-100': [
     {
-      name: '@name',
+      id: '@increment()',
+      nameList: ['@name', '@name', '@name', '@name'],
       age: '@integer(18, 25)',
+      dataTime: '@date(yyyy-MM-dd hh:mm:ss)',
+      imgUrl: "@image('50x50', '#50B347')",
+      title: '@ctitle',
     },
   ],
 });

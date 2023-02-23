@@ -12,12 +12,7 @@ export default defineConfig({
       routes: [
         {
           path: '/',
-          component: '@/pages/addDemo',
-        },
-        {
-          path: '/addDemo',
-          component: '@/pages/addDemo',
-          exact: true,
+          component: '@/pages/home',
         },
         {
           path: '/deleteDemo',
@@ -35,12 +30,24 @@ export default defineConfig({
           exact: true,
         },
         {
-          path: '/map',
-          component: '@/pages/l7map',
+          path: '/listDem',
+          component: '@/pages/home',
+          exact: true,
+        },
+        {
+          path: '/listDem/createItem',
+          component: '@/pages/home/createItem',
           exact: true,
         },
       ],
     },
   ],
   fastRefresh: {},
+  proxy: {
+    '/api': {
+      target: 'http://127.0.0.1:8000',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
 });

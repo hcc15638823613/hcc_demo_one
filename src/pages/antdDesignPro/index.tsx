@@ -58,8 +58,26 @@ export default () => {
         }}
         submitter={{
           render: (props, doms) => {
-            console.log(doms, 'doms----');
-            return <div>崭新的按钮</div>;
+            const resetClick = (doms || [])?.find(
+              (item) => item?.key === 'rest',
+            );
+            const { onClick } = resetClick?.props;
+            console.log(onClick, 'resetClick-----');
+
+            return (
+              <Space>
+                <Button onClick={onClick}>重置</Button>
+                <Button
+                  onClick={async () => {
+                    await formRef?.current?.validateFields().then((res) => {
+                      console.log(res, 'resData+++++');
+                    });
+                  }}
+                >
+                  提交
+                </Button>
+              </Space>
+            );
           },
         }}
         onFinish={async (values) => {
@@ -71,7 +89,7 @@ export default () => {
         request={async () => {
           await waitTime(100);
           return {
-            name: '蚂蚁设计有限公司',
+            name: '皮克桃',
             useMode: 'chapter',
           };
         }}
@@ -128,9 +146,9 @@ export default () => {
           label="职位"
           name="level"
           valueEnum={{
-            1: 'front end',
-            2: 'back end',
-            3: 'full stack',
+            name1: 'front end',
+            name2: 'back end',
+            name333: 'full stack',
           }}
         />
       </ProForm>

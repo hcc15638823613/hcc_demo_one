@@ -9,18 +9,13 @@ const HeaderRouterData = [
     hrefText: '/taskDemo',
   },
   {
-    text: '服务',
-    isClick: true,
-    hrefText: '/addDemo',
-  },
-  {
     text: '|',
     isClick: false,
   },
   {
-    text: '地图',
+    text: '列表',
     isClick: true,
-    hrefText: '/map',
+    hrefText: '/listDem',
   },
   {
     text: '可编辑表格',
