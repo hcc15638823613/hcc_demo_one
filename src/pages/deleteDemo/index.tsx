@@ -1,4 +1,3 @@
-import { useModel } from 'umi';
 import Pie from '../g2plot/index';
 import styles from './index.less';
 
@@ -29,8 +28,6 @@ const data = [
   },
 ];
 const DeleteDemo = () => {
-  const { userState } = useModel('userInfo');
-  console.log(userState, 'userState-----');
   return (
     <div className={styles.g2Box}>
       <Pie dataList={data} />

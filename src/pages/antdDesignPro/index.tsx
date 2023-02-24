@@ -9,13 +9,13 @@ import {
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
-import { Col, message, Row, Space, Button } from 'antd';
+import { message, Space, Button } from 'antd';
 import type { FormLayout } from 'antd/es/form/Form';
-import axios from 'axios';
 import { useState } from 'react';
 import styles from './index.less';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { useRef } from 'react';
+import PicAuthCode from '@/components/dragVerification';
 
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
@@ -26,6 +26,14 @@ const waitTime = (time: number = 100) => {
     }, time);
   });
 };
+const setCode = () => {
+  const words = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+  let code = '';
+  for (let i = 0; i < 4; i++) {
+    code += words[Math.floor(Math.random() * 52)];
+  }
+  return code;
+};
 
 export default () => {
   const [formLayoutType, setFormLayoutType] = useState<FormLayout>(
@@ -33,16 +41,7 @@ export default () => {
   );
   const formRef = useRef<ProFormInstance>();
   const [grid, setGrid] = useState(true);
-  const queryDataList = async () => {
-    const resData = await axios.post('/mock/dataList', {
-      name: 'hcc',
-      age: 19,
-      isTrue: true,
-    });
-    const formData = formRef?.current?.getFieldsValue();
-    console.log(formData, 'formData-----');
-    console.log(resData, 'resDataresData--------------------------------');
-  };
+
   return (
     <div className={styles.formBox}>
       <ProForm<{
@@ -62,8 +61,6 @@ export default () => {
               (item) => item?.key === 'rest',
             );
             const { onClick } = resetClick?.props;
-            console.log(onClick, 'resetClick-----');
-
             return (
               <Space>
                 <Button onClick={onClick}>重置</Button>
@@ -152,7 +149,7 @@ export default () => {
           }}
         />
       </ProForm>
-      <Button onClick={queryDataList}>请求接口数据</Button>
+      <PicAuthCode setCode={setCode} />
     </div>
   );
 };

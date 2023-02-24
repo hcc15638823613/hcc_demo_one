@@ -1,6 +1,7 @@
 import { history } from 'umi';
 import { Button, Space } from 'antd';
 import styles from './index.less';
+import MenuList from './MenuList';
 
 const HeaderRouterData = [
   {
@@ -54,6 +55,9 @@ const Header = () => {
             );
           })}
         </Space>
+      </div>
+      <div className={styles.rightHeader}>
+        <MenuList />
       </div>
     </div>
   );

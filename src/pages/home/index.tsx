@@ -20,6 +20,10 @@ const contentStyle: React.CSSProperties = {
 };
 const CardList = () => {
   const [dataListState, setDataListState] = useState<dataListType[]>([]);
+  const [pageState, setPageState] = useState<{
+    current: number;
+    pageSize: number;
+  }>({ current: 1, pageSize: 8 });
   const queryDataList = async () => {
     const resData = await axios.post('/mock/dataList', {
       name: 'hcc',
@@ -53,6 +57,19 @@ const CardList = () => {
         className={styles.listCrd}
         grid={{ gutter: 16, column: 4 }}
         dataSource={dataListState}
+        pagination={{
+          showSizeChanger: false,
+          showQuickJumper: true,
+          total: dataListState.length,
+          pageSize: pageState.pageSize,
+          current: pageState.current,
+          onChange: (page, pageSize) => {
+            setPageState({
+              current: page,
+              pageSize,
+            });
+          },
+        }}
         renderItem={(item) => {
           return (
             <List.Item>

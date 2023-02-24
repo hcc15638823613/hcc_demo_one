@@ -24,7 +24,7 @@ const CardItem = ({ dataItem }: Props) => {
         extra={<EditOutlined onClick={editClick} />}
       >
         <Image
-          width={100}
+          width={30}
           onClick={() => setVisible(true)}
           preview={{ visible: false }}
           src={imgUrl}
