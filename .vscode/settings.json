@@ -1,5 +1,7 @@
 {
-    "cSpell.words": [
-        "antv"
-    ]
+  "cSpell.words": ["antv"],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-c>": false
+  }
 }

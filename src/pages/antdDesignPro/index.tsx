@@ -16,6 +16,7 @@ import styles from './index.less';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { useRef } from 'react';
 import PicAuthCode from '@/components/dragVerification';
+import { Prompt } from 'umi';
 
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
@@ -149,6 +150,7 @@ export default () => {
           }}
         />
       </ProForm>
+      <Prompt message="你确定要离开么？" />
       <PicAuthCode setCode={setCode} />
     </div>
   );

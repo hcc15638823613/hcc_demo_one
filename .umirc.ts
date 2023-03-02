@@ -4,7 +4,15 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  title: 'umi练习',
+  title: '55666',
+  logo: false,
+  devServer: {
+    host: '0.0.0.0',
+    hostname: 'hccDemo',
+    port: 9000,
+    // https: true,
+  },
+
   routes: [
     { path: '/login', component: '@/pages/login' },
     {
@@ -47,6 +55,12 @@ export default defineConfig({
           exact: true,
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/canvasDemo',
+          component: '@/pages/canvasDemo',
+          exact: true,
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
   ],
@@ -61,5 +75,10 @@ export default defineConfig({
   locale: {
     default: 'zh-CN', // 工程默认语言
     antd: true,
+  },
+
+  dva: {
+    immer: true,
+    hmr: false,
   },
 });

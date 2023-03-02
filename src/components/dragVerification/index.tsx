@@ -144,6 +144,7 @@ export default function PicAuthCode(props: {
     }
   };
   const refresh = () => {
+    //TODO: 替换成后端的接口数据可以让后端去为维护此数据验证码接口
     const words = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     let code = '';
     for (let i = 0; i < 4; i++) {
@@ -153,7 +154,7 @@ export default function PicAuthCode(props: {
   };
 
   return (
-    <div style={{ margin: '10px' }}>
+    <div>
       <canvas
         ref={canvasRef as any}
         width={config.contentWidth}

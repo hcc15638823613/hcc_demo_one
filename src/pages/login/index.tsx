@@ -12,10 +12,12 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { Divider, message, Space, Tabs } from 'antd';
+import { Divider, message, Space, Tabs, Input } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
 import { history } from 'umi';
+import PicAuthCode from '@/components/dragVerification';
+import styles from './index.less';
 
 type LoginType = 'phone' | 'account';
 
@@ -28,6 +30,17 @@ const iconStyles: CSSProperties = {
 
 export default () => {
   const [loginType, setLoginType] = useState<LoginType>('account');
+  const [isTrue, setIsTrue] = useState<boolean>(true);
+  const [VerificationCode, setVerificationCode] = useState<string>('');
+  const setCode = () => {
+    const words = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+    let code = '';
+    for (let i = 0; i < 4; i++) {
+      code += words[Math.floor(Math.random() * 52)];
+    }
+    setVerificationCode(code);
+    return code;
+  };
   return (
     <div
       style={{
@@ -41,7 +54,13 @@ export default () => {
         title="遇见歓歓🌹"
         subTitle="森林里的北极星！！！"
         onFinish={async (values) => {
-          const { username, password, mobile, captcha } = values;
+          const { username, password, mobile, captcha, inputRuleName } = values;
+          if (VerificationCode === inputRuleName) {
+            await setIsTrue(true);
+          } else {
+            await setIsTrue(false);
+            return;
+          }
           if (
             loginType === 'account' &&
             username === 'hcc' &&
@@ -124,18 +143,7 @@ export default () => {
               >
                 <TaobaoOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
               </div>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  height: 40,
-                  width: 40,
-                  border: '1px solid #D4D8DD',
-                  borderRadius: '50%',
-                }}
-              >
+              <div className={styles.container}>
                 <WeiboOutlined style={{ ...iconStyles, color: '#333333' }} />
               </div>
             </Space>
@@ -252,6 +260,21 @@ export default () => {
           >
             忘记密码
           </a>
+        </div>
+        <div className={styles.lableBox}>
+          <ProFormText
+            name="inputRuleName"
+            validateStatus={isTrue ? 'success' : 'error'}
+            help={isTrue ? '' : '验证码有误,请注意区分大小写'}
+            width={130}
+            rules={[
+              {
+                required: true,
+                message: '请输入验证码！',
+              },
+            ]}
+          />
+          <PicAuthCode setCode={setCode} />
         </div>
       </LoginFormPage>
     </div>

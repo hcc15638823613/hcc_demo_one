@@ -19,7 +19,7 @@ const HeaderRouterData = [
     hrefText: '/listDem',
   },
   {
-    text: '可编辑表格',
+    text: '图例',
     isClick: true,
     hrefText: '/deleteDemo',
   },
@@ -28,11 +28,12 @@ const HeaderRouterData = [
     isClick: true,
     hrefText: '/proForm',
   },
+  {
+    text: '画布',
+    isClick: true,
+    hrefText: '/canvasDemo',
+  },
 ];
-const userInfo = {
-  name: '浩辰',
-  identity: 'ADMIN',
-};
 
 const Header = () => {
   return (

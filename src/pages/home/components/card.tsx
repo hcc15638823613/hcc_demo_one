@@ -14,6 +14,12 @@ const CardItem = ({ dataItem }: Props) => {
   const [visible, setVisible] = useState(false);
   const editClick = () => {
     history.push(`/listDem/createItem?cardId=${id}`);
+    // history.push({
+    //   pathname: '/listDem/createItem',
+    //   query: {
+    //     cardId: `${id}`,
+    //   },
+    // });
   };
   return (
     <>
