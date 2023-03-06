@@ -26,7 +26,7 @@ const CardList = () => {
   }>({ current: 1, pageSize: 8 });
   const queryDataList = async () => {
     const resData = await axios.post('/mock/dataList', {
-      name: 'hcc',
+      username: '初始化项目入参',
       isTrue: true,
     });
     const list = resData?.data?.list || [];

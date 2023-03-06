@@ -36,7 +36,7 @@ const CardItem = ({ dataItem }: Props) => {
           src={imgUrl}
           placeholder={true}
         />
-        <p>{nameList.join(',')}</p>
+        <p>{(nameList || []).join(',')}</p>
         <p>{age}</p>
         <p>{dataTime}</p>
       </Card>

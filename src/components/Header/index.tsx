@@ -33,6 +33,16 @@ const HeaderRouterData = [
     isClick: true,
     hrefText: '/canvasDemo',
   },
+  {
+    text: 'SWR请求',
+    isClick: true,
+    hrefText: '/swrDemo',
+  },
+  {
+    text: '在线编辑器',
+    isClick: true,
+    hrefText: '/editor',
+  },
 ];
 
 const Header = () => {

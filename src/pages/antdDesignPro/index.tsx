@@ -16,7 +16,8 @@ import styles from './index.less';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { useRef } from 'react';
 import PicAuthCode from '@/components/dragVerification';
-import { Prompt } from 'umi';
+// import { Prompt } from 'umi';
+import { useStore } from '@/pages/zustand/useStore';
 
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
@@ -42,6 +43,7 @@ export default () => {
   );
   const formRef = useRef<ProFormInstance>();
   const [grid, setGrid] = useState(true);
+  const addVotes = useStore((state) => state.addVotes);
 
   return (
     <div className={styles.formBox}>
@@ -148,10 +150,19 @@ export default () => {
             name2: 'back end',
             name333: 'full stack',
           }}
+          params={undefined}
+          debounceTime={undefined}
+          request={undefined}
         />
       </ProForm>
-      <Prompt message="你确定要离开么？" />
+      {/* <Prompt
+        message={(location, action) => {
+          console.log(location, 'location---');
+          return '';
+        }}
+      /> */}
       <PicAuthCode setCode={setCode} />
+      <Button onClick={addVotes}>addUseStore</Button>
     </div>
   );
 };

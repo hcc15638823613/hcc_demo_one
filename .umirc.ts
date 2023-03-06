@@ -4,13 +4,12 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  title: '55666',
+  title: false,
   logo: false,
   devServer: {
     host: '0.0.0.0',
     hostname: 'hccDemo',
     port: 9000,
-    // https: true,
   },
 
   routes: [
@@ -61,6 +60,18 @@ export default defineConfig({
           exact: true,
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/swrDemo',
+          component: '@/pages/swrDemo',
+          exact: true,
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/editor',
+          component: '@/pages/editor',
+          exact: true,
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
   ],
@@ -80,5 +91,6 @@ export default defineConfig({
   dva: {
     immer: true,
     hmr: false,
+    skipModelValidate: true,
   },
 });

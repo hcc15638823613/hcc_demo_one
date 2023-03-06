@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styles from './index.less';
 // import {debounce} from 'lodash'
 // import { useDebounceFn } from '@ant-design/pro-components';
+import GraphEditor from '@/components/GraphEditor/editorReact';
 import {
   CloseCircleOutlined,
   DragOutlined,
@@ -311,8 +312,13 @@ const FuwuDemo = () => {
               overflowY: 'auto',
             }}
           >
-            <div style={{ height: '200px', border: '1px solid green' }}>
-              {textTitle?.node?.title || '我是空空的'}
+            <div
+              style={{
+                maxHeight: '400px',
+                paddingTop: '24px',
+              }}
+            >
+              <GraphEditor isREadOnly={false} height={400} />
             </div>
           </div>
           <div
