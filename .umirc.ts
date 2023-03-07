@@ -72,6 +72,12 @@ export default defineConfig({
           exact: true,
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/listDem/scrollList',
+          component: '@/pages/home/scrollList',
+          exact: true,
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
   ],

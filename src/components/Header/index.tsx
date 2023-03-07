@@ -43,6 +43,11 @@ const HeaderRouterData = [
     isClick: true,
     hrefText: '/editor',
   },
+  {
+    text: '虚拟滚动列表',
+    isClick: true,
+    hrefText: '/listDem/scrollList',
+  },
 ];
 
 const Header = () => {

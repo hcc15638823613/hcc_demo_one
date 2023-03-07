@@ -24,9 +24,10 @@ type GithubIssueItem = {
 const EditorDemo = () => {
   const [editorValue, setEditorValue] = useState<string | undefined>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [modalLoading, setModalLoading] = useState<boolean>(false);
+
   const onChangeEditorValue = (val: string | undefined) => {
     setEditorValue(val);
   };
@@ -39,6 +40,8 @@ const EditorDemo = () => {
     {
       title: '标题',
       dataIndex: 'title',
+      // readonly: true,
+      editable: false,
       copyable: true,
       ellipsis: true,
       tip: '标题过长会自动收缩',
@@ -86,7 +89,7 @@ const EditorDemo = () => {
       },
       render: (_, record) => (
         <Space>
-          {record.labels.map(({ name, color }) => (
+          {record?.labels?.map(({ name, color }) => (
             <Tag color={color} key={name}>
               {name}
             </Tag>
@@ -100,12 +103,12 @@ const EditorDemo = () => {
       dataIndex: 'created_at',
       valueType: 'date',
       sorter: true,
-      hideInSearch: true,
     },
     {
       title: '创建时间',
       dataIndex: 'created_at',
       valueType: 'dateRange',
+      hideInSearch: true,
       hideInTable: true,
       search: {
         transform: (value) => {
@@ -166,19 +169,15 @@ const EditorDemo = () => {
         获取编辑器数据
       </Button>
       <Button onClick={changeValuesync}>修改编辑器数据</Button>
-      <Button
-        onClick={() => {
-          setIsReadOnly(!isReadOnly);
-        }}
-      >
-        禁用编辑器
-      </Button>
+
       <ProTable<GithubIssueItem>
         columns={columns}
         actionRef={actionRef}
+        // params={}
         cardBordered
         request={async (params = {}, sort, filter) => {
-          console.log(sort, filter);
+          console.log(sort, filter, '--++');
+          console.log(params, 'params---');
           return request<{
             data: GithubIssueItem[];
           }>('https://proapi.azurewebsites.net/github/issues', {
@@ -197,7 +196,14 @@ const EditorDemo = () => {
         }}
         rowKey="id"
         search={{
-          labelWidth: 'auto',
+          labelWidth: 'auto', // 在此处可以操作按钮的位置
+          optionRender: (searchConfig, props, doms) => {
+            const resetClick = (doms || [])?.find(
+              (item: any) => item?.key === 'rest',
+            ) as any;
+            const { onClick } = resetClick?.props;
+            return [<Button onClick={onClick}>来了啊</Button>];
+          },
         }}
         options={{
           setting: {
@@ -232,15 +238,15 @@ const EditorDemo = () => {
               items: [
                 {
                   label: '1st item',
-                  key: '1',
+                  key: '1st',
                 },
                 {
                   label: '2nd item',
-                  key: '1',
+                  key: '2nd',
                 },
                 {
                   label: '3rd item',
-                  key: '1',
+                  key: '3rd',
                 },
               ],
             }}
@@ -258,6 +264,15 @@ const EditorDemo = () => {
           setIsOpenModal(false);
         }}
         style={{ width: '100%' }}
+        confirmLoading={modalLoading}
+        onOk={() => {
+          console.log(editorValue, 'editorValue---');
+          setModalLoading(true);
+          setTimeout(() => {
+            setIsOpenModal(false);
+            setModalLoading(false);
+          }, 2000);
+        }}
       >
         <Spin spinning={loading}>
           <div
@@ -268,7 +283,7 @@ const EditorDemo = () => {
             <GraphEditor
               value={editorValue}
               changeValue={onChangeEditorValue}
-              isREadOnly={isReadOnly}
+              isREadOnly={false}
             />
           </div>
         </Spin>
